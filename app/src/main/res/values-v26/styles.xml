@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Tv_Style1">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingHorizontal">@dimen/dp_14</item>
+        <item name="android:paddingVertical">@dimen/dp_6</item>
+    </style>
+</resources>
