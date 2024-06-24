@@ -25,6 +25,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
         <activity
+            android:name=".salesModule.newOrder.NewOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".salesModule.SalesRepHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".salesModule.SalesDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".homeModule.ProfileActivity"
             android:exported="false" />
         <activity
