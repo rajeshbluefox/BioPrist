@@ -4,9 +4,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".salesModule.newOrder.NewOrderActivity">
+        tools:context=".salesModule.newOrder.AddItemActivity">
 
         <LinearLayout
             android:id="@+id/titleBarLayout"
@@ -33,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_12"
                 android:paddingVertical="@dimen/dp_8"
-                android:text="New Order"
+                android:text="Add Item"
                 android:textAlignment="center"
                 android:textColor="#FFF"
                 android:textSize="16sp"
@@ -55,7 +56,7 @@
 
         <EditText
             android:id="@+id/search_bar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="@dimen/dp_6"
@@ -64,11 +65,22 @@
             android:cursorVisible="false"
             android:drawableStart="@drawable/ic_baseline_search_24"
             android:drawablePadding="@dimen/dp_10"
-            android:hint="Search Customer..."
+            android:hint="Search Medicine..."
             android:singleLine="true"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleBarLayout" />
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_6"
+            android:src="@drawable/dummy_filter"
+            app:layout_constraintBottom_toBottomOf="@+id/search_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/search_bar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".salesModule.outstanding.OutStandingActivity">
+
+        <LinearLayout
+            android:id="@+id/titleBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btBack"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/dp_12"
+                android:src="@drawable/baseline_arrow_back_36_w" />
+
+            <TextView
+                android:id="@+id/titleBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_12"
+                android:paddingVertical="@dimen/dp_8"
+                android:text="OUTSTANDING AMOUNT"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tableTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_6"
+            android:background="@color/teal_700"
+            app:layout_constraintTop_toBottomOf="@id/titleBarLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvInvoiceDateTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Inv Date"
+                android:textStyle="bold"
+                android:textColor="@color/white_to_black"/>
+
+            <TextView
+                android:id="@+id/tvInvoiceNoTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Inv No"
+                android:textStyle="bold"
+                android:textColor="@color/white_to_black"/>
+
+            <TextView
+                android:id="@+id/tvAmountTitle"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                android:text="Amount"
+                android:textStyle="bold"
+                android:textColor="@color/white_to_black"/>
+
+            <TextView
+                android:id="@+id/tvBalanceTitle"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                android:text="Balance"
+                android:textStyle="bold"
+                android:textColor="@color/white_to_black"/>
+
+            <TextView
+                android:id="@+id/tvDaysTitle"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                android:text="Days"
+                android:textStyle="bold"
+                android:textColor="@color/white_to_black"/>
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_6"
+            android:paddingBottom="6dp"
+            app:layout_constraintBottom_toTopOf="@id/tableBottomLt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableTitle" />
+
+        <LinearLayout
+            android:id="@+id/tableBottomLt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dp_12"
+            android:paddingVertical="@dimen/dp_4"
+            android:layout_marginTop="@dimen/dp_6"
+            android:background="@color/teal_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvCollection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Collection"
+                android:textStyle="bold"
+                android:textColor="@color/purple_700"/>
+
+            <TextView
+                android:visibility="visible"
+                android:id="@+id/tvInvoiceNoTitleD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rec Entry"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/dp_8"
+                android:textColor="@color/white_to_black"/>
+
+            <TextView
+                android:id="@+id/tvAmountTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp_6"
+                android:text="456789.00"
+                android:textStyle="bold"
+                android:textColor="@color/white_to_black"/>
+
+            <TextView
+                android:id="@+id/tvBalanceTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp_6"
+                android:text="456789.00"
+                android:textStyle="bold"
+                android:textColor="@color/white_to_black"/>
+
+            <TextView
+                android:id="@+id/tvDaysTotal"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                android:text="675"
+                android:textStyle="bold"
+                android:textColor="@color/white_to_black"/>
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

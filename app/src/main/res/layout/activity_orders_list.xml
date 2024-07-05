@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+<layout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".salesModule.newOrder.NewOrderActivity">
+        tools:context=".salesModule.ordersList.OrdersListActivity">
 
         <LinearLayout
             android:id="@+id/titleBarLayout"
@@ -33,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_12"
                 android:paddingVertical="@dimen/dp_8"
-                android:text="New Order"
+                android:text="Orders List"
                 android:textAlignment="center"
                 android:textColor="#FFF"
                 android:textSize="16sp"
@@ -44,34 +47,25 @@
                 android:layout_height="@dimen/dp_1"
                 android:layout_weight="1" />
 
-            <!--        <ImageView-->
-            <!--            android:id="@+id/logo"-->
-            <!--            android:layout_width="@dimen/dp_36"-->
-            <!--            android:layout_height="@dimen/dp_36"-->
-            <!--            android:layout_gravity="center_vertical"-->
-            <!--            android:layout_marginStart="@dimen/dp_12"-->
-            <!--            android:src="@mipmap/logo_medrep" />-->
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tvTitleAddedItems"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="@dimen/dp_6"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/search_background"
-            android:cursorVisible="false"
-            android:drawableStart="@drawable/ic_baseline_search_24"
-            android:drawablePadding="@dimen/dp_10"
-            android:hint="Search Customer..."
-            android:singleLine="true"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="6dp"
+            android:text="Added Items"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleBarLayout" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/rvAddedItems"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_12"
@@ -79,8 +73,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_bar"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@id/tvTitleAddedItems" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

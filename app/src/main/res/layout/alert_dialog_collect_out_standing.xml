@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dp_4"
+    android:layout_marginBottom="@dimen/dp_3"
+    app:cardElevation="@dimen/dp_4">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:text="Collection Details"
+            android:textAlignment="center"
+            android:textColor="@color/white_to_black"
+            android:textSize="@dimen/dp_18"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCollectAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Collect Amount"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/etCollectAmount"
+            app:layout_constraintTop_toBottomOf="@+id/title1" />
+
+        <EditText
+            android:id="@+id/etCollectAmount"
+            android:layout_width="@dimen/dp_200"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/et_background_2"
+            android:drawablePadding="10dp"
+            android:hint="Collect Amount"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColor="@color/black_to_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCollectAmount" />
+
+        <TextView
+            android:id="@+id/tvNarration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Narration"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/etCollectAmount"
+            app:layout_constraintTop_toBottomOf="@+id/etCollectAmount" />
+
+        <EditText
+            android:id="@+id/etNarration"
+            android:layout_width="@dimen/dp_200"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/et_background_2"
+            android:drawablePadding="10dp"
+            android:hint="Narration"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColor="@color/black_to_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNarration" />
+
+        <TextView
+            android:id="@+id/tvBillMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Bill Mode"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/etNarration"
+            app:layout_constraintTop_toBottomOf="@+id/etNarration" />
+
+        <RadioGroup
+            android:id="@+id/rgBillMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/tvBillMode"
+            app:layout_constraintTop_toBottomOf="@+id/tvBillMode">
+
+            <RadioButton
+                android:id="@+id/ggReceipt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_40"
+                android:text="Receipt" />
+
+            <RadioButton
+                android:id="@+id/ggInvoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Invoice" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tvPaymentMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Mode"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/rgBillMode"
+            app:layout_constraintTop_toBottomOf="@+id/rgBillMode" />
+
+        <RadioGroup
+            android:id="@+id/rgPaymentMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/tvPaymentMode"
+            app:layout_constraintTop_toBottomOf="@+id/tvPaymentMode">
+
+            <RadioButton
+                android:id="@+id/ggCash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_40"
+                android:text="Cash" />
+
+            <RadioButton
+                android:id="@+id/ggCheque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cheque" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/btSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/button_one"
+            android:paddingHorizontal="@dimen/dp_10"
+            android:paddingVertical="4dp"
+            android:text="Submit"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rgPaymentMode" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

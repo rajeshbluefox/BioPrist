@@ -23,13 +23,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Parish"
         android:usesCleartextTraffic="true"
-        tools:targetApi="33">
+        tools:targetApi="34">
+        <activity
+            android:name=".salesModule.ordersList.OrdersListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".salesModule.outstanding.OutStandingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".salesModule.newOrder.AddItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".salesModule.newOrder.CustomerDetailsActivity"
+            android:exported="false" />
         <activity
             android:name=".salesModule.newOrder.NewOrderActivity"
             android:exported="false" />
         <activity
             android:name=".salesModule.SalesRepHomeActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".salesModule.SalesDetailsActivity"
             android:exported="false" />
@@ -60,11 +78,13 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
 
             <meta-data
                 android:name="android.app.lib_name"
