@@ -62,8 +62,8 @@ class AddInvoiceDialog(
             val invoiceData1 = InvoiceData()
             invoiceData1.invoiceDate="${0+dummyPosition}/06/2024"
             invoiceData1.invoiceNumber="I000$dummyPosition"
-            invoiceData1.amount="${1000+dummyPosition}"
-            invoiceData1.balance="${500+dummyPosition}"
+            invoiceData1.invoiceAmount="${1000+dummyPosition}"
+            invoiceData1.balanceAmount="${500+dummyPosition}"
             invoiceDataList.add(invoiceData1)
 
             Log.e("Test","Size : ${invoiceDataList.size}")
@@ -123,8 +123,8 @@ class AddInvoiceDialog(
         val invoiceData1 = InvoiceData()
         invoiceData1.invoiceDate="${0+dummyPosition}/06/2024"
         invoiceData1.invoiceNumber="I000$dummyPosition"
-        invoiceData1.amount="${1000+dummyPosition}"
-        invoiceData1.balance="${500+dummyPosition}"
+        invoiceData1.invoiceAmount="${1000+dummyPosition}"
+        invoiceData1.balanceAmount="${500+dummyPosition}"
         invoiceDataList.add(invoiceData1)
         dummyPosition++
 

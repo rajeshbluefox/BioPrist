@@ -10,6 +10,7 @@ import bluefox.rajesh.medicalrepresentative.R
 import bluefox.rajesh.medicalrepresentative.databinding.ActivityCustomerDetailsBinding
 import bluefox.rajesh.medicalrepresentative.databinding.ActivityOrdersListBinding
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.MedicineData
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.ProductStockData
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.supportFunctions.AddedItemsAdapter
 import bluefox.rajesh.medicalrepresentative.zCommonFuntions.UtilFunctions
 import bluefox.rajesh.medicalrepresentative.zSharedPreference.DatabaseHelper
@@ -21,7 +22,7 @@ class OrdersListActivity : AppCompatActivity() {
 
     private lateinit var addedItemsAdapter: AddedItemsAdapter
 
-    val dbHelper = DatabaseHelper(this)
+    private val dbHelper = DatabaseHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +51,7 @@ class OrdersListActivity : AppCompatActivity() {
         }
     }
 
-    private fun initAddedItemsRecyclerView(addedItemsList: ArrayList<MedicineData>) {
+    private fun initAddedItemsRecyclerView(addedItemsList: ArrayList<ProductStockData>) {
 
         addedItemsAdapter = AddedItemsAdapter(addedItemsList, this, ::onProductClicked)
 

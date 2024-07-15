@@ -12,6 +12,9 @@ import bluefox.rajesh.medicalrepresentative.homeModule.modalClass.getProductsRes
 import bluefox.rajesh.medicalrepresentative.loginModule.modalClass.GetRepresentativeResponse
 import bluefox.rajesh.medicalrepresentative.loginModule.modalClass.LoginResponse
 import bluefox.rajesh.medicalrepresentative.loginModule.modalClass.UpdateLoginStatusResponse
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.GetCustomersResponse
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.GetProductsResponse
+import bluefox.rajesh.medicalrepresentative.salesModule.outstanding.modalClass.GetOutstandingResponse
 
 interface ApiHelper {
 
@@ -34,6 +37,15 @@ interface ApiHelper {
     suspend fun getVisitHistory(repId: Int): GetVisitHistoryResponse
 
     suspend fun getAreasList(repId: Int): AreasListResponse
+
+    //Sales Rep APIs
+
+    suspend fun getCustomers(): GetCustomersResponse
+
+    suspend fun getProductsSalesRep(): GetProductsResponse
+
+    suspend fun getOutstandingList(custId: Int, repId: Int): GetOutstandingResponse
+
 
 
 }

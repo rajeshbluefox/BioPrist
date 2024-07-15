@@ -32,11 +32,20 @@ class InvoiceAdapter(
 
         val invoiceItem = invoiceDataList[position]
 
-        holder.binding.tvInvoiceDateValue.text = invoiceItem.invoiceDate
+
+        holder.binding.tvInvoiceDateValue.text = invoiceItem.invoiceDate!!.substring(0, 10)
         holder.binding.tvInvoiceNoValue.text = invoiceItem.invoiceNumber
-        holder.binding.tvAmountValue.text = invoiceItem.amount
-        holder.binding.tvBalanceValue.text = invoiceItem.balance
-        holder.binding.tvDaysValue.text = invoiceItem.days
+
+        val number = invoiceItem.invoiceAmount!!.toDouble()
+        val trimmedNumber = String.format("%.1f", number)
+        holder.binding.tvAmountValue.text = trimmedNumber
+
+
+        val balanceNumber = invoiceItem.balanceAmount!!.toDouble()
+        val trimmedBalanceNumber = String.format("%.1f", balanceNumber)
+        holder.binding.tvBalanceValue.text = trimmedBalanceNumber
+
+        holder.binding.tvDaysValue.text = invoiceItem.days.toString()
 
     }
 

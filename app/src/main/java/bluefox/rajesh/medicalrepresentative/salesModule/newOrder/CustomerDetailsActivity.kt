@@ -3,19 +3,12 @@ package bluefox.rajesh.medicalrepresentative.salesModule.newOrder
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import bluefox.rajesh.medicalrepresentative.R
 import bluefox.rajesh.medicalrepresentative.databinding.ActivityCustomerDetailsBinding
-import bluefox.rajesh.medicalrepresentative.databinding.ActivityNewOrderBinding
-import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.MedicineData
-import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.SalesCustomerData
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.ProductStockData
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.SelectedData
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.supportFunctions.AddedItemsAdapter
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.supportFunctions.CollectOutstandingDialog
-import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.supportFunctions.MedicineItemAdapter
-import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.supportFunctions.NewOrdersAdapter
 import bluefox.rajesh.medicalrepresentative.zCommonFuntions.CallIntent
 import bluefox.rajesh.medicalrepresentative.zSharedPreference.DatabaseHelper
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +22,7 @@ class CustomerDetailsActivity : AppCompatActivity() {
 
     private lateinit var addedItemsAdapter: AddedItemsAdapter
 
-    val dbHelper = DatabaseHelper(this)
+    private val dbHelper = DatabaseHelper(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +54,7 @@ class CustomerDetailsActivity : AppCompatActivity() {
         binding.tvCustomerNameValue.text = SelectedData.salesCustomerData.customerName
 
         val addedItemsList =
-            dbHelper.getMedicinesByCustomerId(SelectedData.salesCustomerData.customerId!!)
+            dbHelper.getMedicinesByCustomerId(SelectedData.salesCustomerData.customerId)
         if (addedItemsList.isEmpty()) {
             binding.tvTitleAddedItems.visibility = View.GONE
             binding.btEditItem.visibility = View.GONE
@@ -77,7 +70,8 @@ class CustomerDetailsActivity : AppCompatActivity() {
         }
 
         binding.btOutStanding.setOnClickListener {
-            collectOutstandingDialog.openCollectOutstandingDialog()
+            CallIntent.goToOutStandingActivity(this, false, this)
+//            collectOutstandingDialog.openCollectOutstandingDialog()
 
         }
         binding.btBack.setOnClickListener {
@@ -86,7 +80,7 @@ class CustomerDetailsActivity : AppCompatActivity() {
 
     }
 
-    private fun initAddedItemsRecyclerView(addedItemsList: ArrayList<MedicineData>) {
+    private fun initAddedItemsRecyclerView(addedItemsList: ArrayList<ProductStockData>) {
 
         addedItemsAdapter = AddedItemsAdapter(addedItemsList, this, ::onProductClicked)
 

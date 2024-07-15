@@ -2,14 +2,19 @@ package bluefox.rajesh.medicalrepresentative.salesModule.newOrder.supportFunctio
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import bluefox.rajesh.medicalrepresentative.databinding.ItemAddedItemBinding
-import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.MedicineData
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.AddItemActivity
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.CustomerDetailsActivity
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.CustomersData
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.ProductStockData
+import bluefox.rajesh.medicalrepresentative.salesModule.ordersList.OrdersListActivity
 
 
 class AddedItemsAdapter(
-    private var medicinesList: ArrayList<MedicineData>,
+    private var medicinesList: ArrayList<ProductStockData>,
     private var context: Context,
     private val listener: () -> Unit,
 ) :
@@ -32,8 +37,30 @@ class AddedItemsAdapter(
 
         val medicineItems = medicinesList[position]
 
-        holder.binding.tvMedicineName.text=medicineItems.medicineName
-        holder.binding.tvQuantity.text=medicineItems.quantity
+        holder.binding.tvMedicineName.text = medicineItems.productName
+
+        if(context is OrdersListActivity)
+        {
+            holder.binding.tvCustomerName.visibility=View.VISIBLE
+            holder.binding.tvCustomerNameValue.visibility=View.VISIBLE
+            holder.binding.tvCustomerNameValue.text=medicineItems.customerName
+        }
+
+        if (medicineItems.quantity != "0")
+            holder.binding.tvQuantity.text = medicineItems.quantity
+        else{
+            holder.binding.titleQ.visibility= View.GONE
+            holder.binding.tvQuantity.visibility=View.GONE
+        }
+
+        if (medicineItems.freeQuantity!="0")
+        {
+            holder.binding.tvFreeQuantity.text = medicineItems.freeQuantity
+        }else{
+            holder.binding.titleFQ.visibility=View.GONE
+            holder.binding.tvFreeQuantity.visibility=View.GONE
+        }
+
 
         holder.binding.productItem.setOnClickListener {
 //            listener.invoke()

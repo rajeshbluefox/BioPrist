@@ -12,6 +12,9 @@ import bluefox.rajesh.medicalrepresentative.homeModule.modalClass.getProductsRes
 import bluefox.rajesh.medicalrepresentative.loginModule.modalClass.GetRepresentativeResponse
 import bluefox.rajesh.medicalrepresentative.loginModule.modalClass.LoginResponse
 import bluefox.rajesh.medicalrepresentative.loginModule.modalClass.UpdateLoginStatusResponse
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.GetCustomersResponse
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.GetProductsResponse
+import bluefox.rajesh.medicalrepresentative.salesModule.outstanding.modalClass.GetOutstandingResponse
 import javax.inject.Inject
 
 
@@ -80,6 +83,20 @@ class ApiHelperImplementation @Inject constructor(private val apiService: ApiInt
 
     override suspend fun getAreasList(repId: Int): AreasListResponse {
         return apiService.getAreasList(repId)
+    }
+
+    //Sales Rep APIs
+
+    override suspend fun getCustomers(): GetCustomersResponse {
+        return apiService.getCustomersList()
+    }
+
+    override suspend fun getProductsSalesRep(): GetProductsResponse {
+        return apiService.getProductsList()
+    }
+
+    override suspend fun getOutstandingList(custId: Int,repId: Int): GetOutstandingResponse {
+        return apiService.getOutstadingList(custId, repId)
     }
 
 

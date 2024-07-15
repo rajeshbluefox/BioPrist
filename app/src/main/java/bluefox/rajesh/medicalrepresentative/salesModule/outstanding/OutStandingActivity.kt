@@ -2,8 +2,11 @@ package bluefox.rajesh.medicalrepresentative.salesModule.outstanding
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import bluefox.rajesh.medicalrepresentative.databinding.ActivityOutStandingBinding
+import bluefox.rajesh.medicalrepresentative.salesModule.apiFunctions.SalesRepAPIFunctions
+import bluefox.rajesh.medicalrepresentative.salesModule.apiFunctions.SalesRepViewModel
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.InvoiceData
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.supportFunctions.CollectOutstandingDialog
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.supportFunctions.InvoiceAdapter
@@ -22,6 +25,9 @@ class OutStandingActivity : AppCompatActivity() {
 
     private lateinit var addInvoiceDialog: AddInvoiceDialog
 
+    private lateinit var salesRepViewModel: SalesRepViewModel
+    private lateinit var salesRepAPIFunctions: SalesRepAPIFunctions
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,7 +35,7 @@ class OutStandingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        fillDummyItems()
+//        fillDummyItems()
         onClickListeners()
 
         initViews()
@@ -41,6 +47,18 @@ class OutStandingActivity : AppCompatActivity() {
             CollectOutstandingDialog(layoutInflater, this, ::onCollectSubmitClicked)
 
         addInvoiceDialog=AddInvoiceDialog(layoutInflater,this,::onAddInvoiceClicked)
+
+        salesRepViewModel = ViewModelProvider(this)[SalesRepViewModel::class.java]
+        salesRepAPIFunctions = SalesRepAPIFunctions(
+            salesRepViewModel,
+            this,
+            this,
+            onCustomersListFetched = {},
+            onProductsListFetched = {},
+            ::onOutstandingListFetched
+        )
+
+        salesRepAPIFunctions.getOutstandingList(0,0)
     }
 
     private fun onAddInvoiceClicked()
@@ -77,7 +95,7 @@ class OutStandingActivity : AppCompatActivity() {
         invoiceDataList.add(invoiceData2)
 
         val invoiceData3 = InvoiceData()
-        invoiceData3.amount="250"
+        invoiceData3.invoiceAmount="250"
         invoiceDataList.add(invoiceData3)
         invoiceDataList.add(invoiceData3)
         invoiceDataList.add(invoiceData3)
@@ -89,12 +107,16 @@ class OutStandingActivity : AppCompatActivity() {
         invoiceDataList.add(invoiceData3)
         invoiceDataList.add(invoiceData3)
 
-        initRecyclerView(invoiceDataList)
+        initOutstandingRV(invoiceDataList)
 
 
     }
 
-    private fun initRecyclerView(invoiceData: ArrayList<InvoiceData>) {
+    private fun onOutstandingListFetched(outstandingList: ArrayList<InvoiceData>) {
+        initOutstandingRV(outstandingList)
+    }
+
+    private fun initOutstandingRV(invoiceData: ArrayList<InvoiceData>) {
 
         invoiceAdapter = InvoiceAdapter(invoiceData, this, ::onCancelClicked)
 

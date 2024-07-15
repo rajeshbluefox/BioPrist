@@ -2,9 +2,13 @@ package bluefox.rajesh.medicalrepresentative.salesModule.newOrder
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import bluefox.rajesh.medicalrepresentative.databinding.ActivityAddItemBinding
+import bluefox.rajesh.medicalrepresentative.salesModule.apiFunctions.SalesRepAPIFunctions
+import bluefox.rajesh.medicalrepresentative.salesModule.apiFunctions.SalesRepViewModel
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.MedicineData
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.ProductStockData
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.SelectedData
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.supportFunctions.AddQuantityDialog
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.supportFunctions.MedicineItemAdapter
@@ -22,7 +26,11 @@ class AddItemActivity : AppCompatActivity() {
 
     private lateinit var addQuantityDialog: AddQuantityDialog
 
-    val dbHelper = DatabaseHelper(this)
+    private val dbHelper = DatabaseHelper(this)
+
+    private lateinit var salesRepViewModel: SalesRepViewModel
+    private lateinit var salesRepAPIFunctions: SalesRepAPIFunctions
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +39,6 @@ class AddItemActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initViews()
-        fillDummyItems()
         onClickListeners()
 
     }
@@ -44,7 +51,24 @@ class AddItemActivity : AppCompatActivity() {
 
     private fun initViews() {
         addQuantityDialog = AddQuantityDialog(layoutInflater, this, ::onQuantitySubmitClicked)
+
+        salesRepViewModel = ViewModelProvider(this)[SalesRepViewModel::class.java]
+        salesRepAPIFunctions = SalesRepAPIFunctions(
+            salesRepViewModel,
+            this,
+            this,
+            onCustomersListFetched = {},
+            ::onProductsListFetched,
+            onOutstandingListFetched = {}
+        )
+
+        salesRepAPIFunctions.getProductsList()
     }
+
+    private fun onProductsListFetched(productsList: ArrayList<ProductStockData>) {
+        initProductsRV(productsList)
+    }
+
 
     private fun onQuantitySubmitClicked(quantity: String) {
         addQuantityDialog.close()
@@ -79,12 +103,12 @@ class AddItemActivity : AppCompatActivity() {
         medicineData4.stock = "150"
         medicineDataList.add(medicineData4)
 
-        initRecyclerView(medicineDataList)
+//        initRecyclerView(medicineDataList)
 
 
     }
 
-    private fun initRecyclerView(medicineData: ArrayList<MedicineData>) {
+    private fun initProductsRV(medicineData: ArrayList<ProductStockData>) {
 
         medicineItemAdapter = MedicineItemAdapter(medicineData, this, ::onAddQuantityClicked)
 
@@ -98,8 +122,15 @@ class AddItemActivity : AppCompatActivity() {
 
     }
 
-    private fun onAddQuantityClicked(medicineData: MedicineData) {
+    private fun onAddQuantityClicked(medicineData: ProductStockData) {
         SelectedData.medicineData = medicineData
-        addQuantityDialog.openAddQuantityDialog(medicineData.quantityType)
+
+        if (dbHelper.insertMedicineData(medicineData))
+            UtilFunctions.showToast(this, "Item Added")
+        else
+            UtilFunctions.showToast(this, "Failed to add Item")
+
+//        SelectedData.medicineData = medicineData
+//        addQuantityDialog.openAddQuantityDialog(medicineData.quantityType)
     }
 }

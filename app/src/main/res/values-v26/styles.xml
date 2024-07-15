@@ -8,4 +8,5 @@
         <item name="android:paddingHorizontal">@dimen/dp_14</item>
         <item name="android:paddingVertical">@dimen/dp_6</item>
     </style>
+
 </resources>

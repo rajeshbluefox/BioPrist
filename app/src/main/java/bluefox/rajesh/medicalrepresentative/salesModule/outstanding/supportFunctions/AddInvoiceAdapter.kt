@@ -34,8 +34,8 @@ class AddInvoiceAdapter(
 
         holder.binding.tvInvoiceDateValue.text = invoiceItem.invoiceDate
         holder.binding.tvInvoiceNoValue.text = invoiceItem.invoiceNumber
-        holder.binding.tvAmountValue.text = invoiceItem.amount
-        holder.binding.tvBalanceValue.text = invoiceItem.balance
+        holder.binding.tvAmountValue.text = invoiceItem.invoiceAmount
+        holder.binding.tvBalanceValue.text = invoiceItem.balanceAmount
 
     }
 

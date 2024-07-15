@@ -17,23 +17,79 @@
             android:padding="@dimen/dp_6">
 
             <TextView
-                android:id="@+id/tvMedicineName"
+                android:visibility="gone"
+                android:id="@+id/tvCustomerName"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customer Name :"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvCustomerNameValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customer Name"
+                android:textColor="@color/black_to_white"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/dp_6"
+                app:layout_constraintStart_toEndOf="@id/tvCustomerName"
+                app:layout_constraintTop_toTopOf="@id/tvCustomerName"
+                app:layout_constraintBottom_toBottomOf="@id/tvCustomerName"/>
+
+            <TextView
+                android:id="@+id/tvMedicineName"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="AB Medicals"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:layout_marginEnd="@dimen/dp_4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/tvCustomerName"
+                app:layout_constraintEnd_toStartOf="@id/quantityLt"/>
 
-            <TextView
-                android:id="@+id/tvQuantity"
+            <LinearLayout
+                android:id="@+id/quantityLt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="150.00"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/tvCustomerName"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    android:id="@+id/titleQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Q : "
+                    android:textColor="@color/black_to_white"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="150.00" />
+
+                <TextView
+                    android:id="@+id/titleFQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  FQ : "
+                    android:textColor="@color/black_to_white"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tvFreeQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="150.00" />
+
+
+            </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

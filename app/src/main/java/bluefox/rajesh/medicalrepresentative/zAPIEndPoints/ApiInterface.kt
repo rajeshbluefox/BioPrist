@@ -10,6 +10,9 @@ import bluefox.rajesh.medicalrepresentative.homeModule.modalClass.getProductsRes
 import bluefox.rajesh.medicalrepresentative.loginModule.modalClass.GetRepresentativeResponse
 import bluefox.rajesh.medicalrepresentative.loginModule.modalClass.LoginResponse
 import bluefox.rajesh.medicalrepresentative.loginModule.modalClass.UpdateLoginStatusResponse
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.GetCustomersResponse
+import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.GetProductsResponse
+import bluefox.rajesh.medicalrepresentative.salesModule.outstanding.modalClass.GetOutstandingResponse
 import retrofit2.http.*
 
 interface ApiInterface {
@@ -89,5 +92,23 @@ interface ApiInterface {
     suspend fun getVisitHistory(
         @Field("RepmId") repIs: Int,
     ): GetVisitHistoryResponse
+
+    //Sales Rep APIs
+
+    @GET("getCustomers_SalesRep.php")
+    suspend fun getCustomersList(): GetCustomersResponse
+
+    @GET("getProducts_SalesRep.php")
+    suspend fun getProductsList(): GetProductsResponse
+
+
+    @FormUrlEncoded
+    @POST("getOutstanding_byCustId.php")
+    suspend fun getOutstadingList(
+        @Field("TWMSM_CUM_ID") custId: Int,
+        @Field("TWMSM_REPM_ID") repId: Int,
+    ): GetOutstandingResponse
+
+
 
 }

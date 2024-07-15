@@ -1,15 +1,12 @@
 package bluefox.rajesh.medicalrepresentative.salesModule.newOrder
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import bluefox.rajesh.medicalrepresentative.R
-import bluefox.rajesh.medicalrepresentative.databinding.ActivityHomeBinding
 import bluefox.rajesh.medicalrepresentative.databinding.ActivityNewOrderBinding
-import bluefox.rajesh.medicalrepresentative.homeModule.doctorsListFragment.modalClass.VisitData
-import bluefox.rajesh.medicalrepresentative.homeModule.historyFragment.VisitHistoryAdapter
-import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.InvoiceData
+import bluefox.rajesh.medicalrepresentative.salesModule.apiFunctions.SalesRepAPIFunctions
+import bluefox.rajesh.medicalrepresentative.salesModule.apiFunctions.SalesRepViewModel
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.SalesCustomerData
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.modelClass.SelectedData
 import bluefox.rajesh.medicalrepresentative.salesModule.newOrder.supportFunctions.NewOrdersAdapter
@@ -21,18 +18,35 @@ class NewOrderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewOrderBinding
 
+    private lateinit var salesRepViewModel: SalesRepViewModel
+    private lateinit var salesRepAPIFunctions: SalesRepAPIFunctions
+
+
     private lateinit var newOrdersAdapter: NewOrdersAdapter
     private var customerList: ArrayList<SalesCustomerData> = ArrayList()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityNewOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initViews()
         onClickListeners()
-        fillDummyItems()
+    }
+
+    fun initViews()
+    {
+        salesRepViewModel = ViewModelProvider(this)[SalesRepViewModel::class.java]
+        salesRepAPIFunctions = SalesRepAPIFunctions(
+            salesRepViewModel,
+            this,
+            this,
+            ::onCustomersListFetched,
+            onProductsListFetched={},
+            onOutstandingListFetched = {}
+        )
+
+        salesRepAPIFunctions.getCustomerList()
     }
 
     private fun onClickListeners() {
@@ -40,6 +54,12 @@ class NewOrderActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    private fun onCustomersListFetched(customersList : ArrayList<SalesCustomerData>)
+    {
+        initCustomersRV(customersList)
+    }
+
 
     private fun fillDummyItems()
     {
@@ -68,11 +88,11 @@ class NewOrderActivity : AppCompatActivity() {
         customerData5.customerName="AB Medicals"
         customerList.add(customerData5)
 
-        initRecyclerView(customerList)
+//        initRecyclerView(customerList)
 
     }
 
-    private fun initRecyclerView(customers: ArrayList<SalesCustomerData>) {
+    private fun initCustomersRV(customers: ArrayList<SalesCustomerData>) {
 
         newOrdersAdapter = NewOrdersAdapter(customers, this, ::onItemClicked)
 
